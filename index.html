@@ -1,0 +1,408 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+<title>资和信</title>
+<link rel="stylesheet" type="text/css" href="css/css.css">
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/lufylegend-1.9.11.min.js"></script>
+    <script src="classjs/Ybackground.js"></script>
+    <script src="classjs/Yreturnarrow.js"></script>
+    <script src="classjs/Yjianjian_btn.js"></script>
+    <script src="classjs/Yjianjian_btn_num.js"></script>
+    <script src="classjs/Yjianjian_btn_control.js"></script>
+    <script src="classjs/YExplain.js"></script>
+    <script src="classjs/Yzhekou_effect.js"></script>
+    <script src="classjs/Yqipai_guanquan.js"></script>
+    <script src="classjs/Yqipai_zi.js"></script>
+    <script src="classjs/Yqipai_content.js"></script>
+    <script src="classjs/Yxipai_butn.js"></script>
+    <script src="classjs/Yselect_tip.js"></script>
+    <script src="classjs/YzhongJ_Effects.js"></script>
+    <script src="classjs/Ybuttongroup.js"></script>
+    <!--2016-1-13-->
+    <script src="classjs/Main_Interface.js"></script>
+    <script src="classjs/Guize_Interface.js"></script>
+    <script src="classjs/Tansetvoice.js"></script>
+<script src="js/js.js"></script>
+<!--[if lt IE 9]>
+     <script type="text/javascript" src="js/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+
+<style>
+#legend{width:540px; height:960px; display:block; margin:0px auto; background:#eee;}
+/*body{opacity:0}*/
+/*.bodya{opacity:1}*/
+    canvas{webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0); }
+    /*.bodyover{max-width: 540px; width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; overflow: hidden;}*/
+    /*.bodyover_sc{position: absolute; height: 960px; width: 540px; overflow: hidden; transform-origin: center top;-webkit-transform-origin: center top; left: 50%; margin-left: -540px; top:0px;}*/
+</style>
+<!--<div class="bodyover">-->
+    <!--<div class="bodyover_sc">-->
+
+    <!--</div>-->
+<!--</div>-->
+<div id="legend"></div>
+<script>
+    var bodyover;
+    var bodyover_sc;
+    $(function(){
+        $("body").addClass("bodya");
+        bodyover=$(".bodyover");
+        bodyover_sc=$(".bodyover_sc");
+        bodyover_sc_rezise();
+        $(window).resize(bodyover_sc_rezise);
+
+    })
+    function bodyover_sc_rezise(){
+        var windwoW=bodyover.width();
+        var windwoH=bodyover.height();
+        var gaokuanbi=windwoH/windwoW;
+        var divxiangH=960;
+        var soptfangbli=windwoW/540;
+        if(gaokuanbi<1787/540){
+            divxiangH=1787;
+            soptfangbli=windwoH/divxiangH;
+        }
+        bodyover_sc.css({"transform":"scale("+soptfangbli+")","-webkit-transform":"scale("+soptfangbli+")"});
+    }
+</script>
+
+
+<script>
+LInit(50, "legend", 540, 960, main);
+///////////加载资源//////////////
+var loadData = [
+    {name:"background",path:"images/background.png"}, /////背景大图///////
+    {name:"returnarrow",path:"images/returnarrow.png"}, /////返回按钮///////
+    {name:"jianjian_btn",path:"images/jianjian_btn.png"}, /////加减按钮/////////////////////////////////////////////////
+    {name:"jianjian_btn_num0",path:"images/jianjian_btn_num0.png"}, /////数字0///////
+    {name:"jianjian_btn_num1",path:"images/jianjian_btn_num1.png"}, /////数字1///////
+    {name:"jianjian_btn_num2",path:"images/jianjian_btn_num2.png"}, /////数字2///////
+    {name:"jianjian_btn_num3",path:"images/jianjian_btn_num3.png"}, /////数字3///////
+    {name:"jianjian_btn_num4",path:"images/jianjian_btn_num4.png"}, /////数字4///////
+    {name:"jianjian_btn_num5",path:"images/jianjian_btn_num5.png"}, /////数字5///////
+    {name:"jianjian_btn_num6",path:"images/jianjian_btn_num6.png"}, /////数字6///////
+    {name:"jianjian_btn_num7",path:"images/jianjian_btn_num7.png"}, /////数字7///////
+    {name:"jianjian_btn_num8",path:"images/jianjian_btn_num8.png"}, /////数字8///////
+    {name:"jianjian_btn_num9",path:"images/jianjian_btn_num9.png"}, /////数字9///////
+    {name:"jianjian_btn_back",path:"images/jianjian_btn_back.png"}, /////数字控件圆圈背景///////
+    {name:"jianjian_btn_opct",path:"images/jianjian_btn_opct.png"}, /////数字控件亮光遮罩///////
+    {name:"Explain_back",path:"images/Explain_back.png"}, /////游戏规则说明框背景//////////////////////////////////////
+    {name:"Explain_close",path:"images/Explain_close.png"}, /////游戏规则说明框关闭按钮///////
+    {name:"Explain_btn",path:"images/Explain_btn.png"}, /////游戏规则说明框确定按钮///////
+    {name:"Explain_text",path:"images/Explain_text.png"}, /////游戏规则说明框说明文本///////////////
+    {name:"zhe_1",path:"images/zhe_1.png"}, /////折扣文字特效图片1////////////////////////////////////////////////////
+    {name:"zhe_2",path:"images/zhe_2.png"}, /////折扣文字特效图片2/////////////////
+    {name:"zhe_3",path:"images/zhe_3.png"}, /////折扣文字特效图片3////////////////
+    {name:"zhe_4",path:"images/zhe_4.png"}, /////折扣文字特效图片4////////////////
+    {name:"zhe_5",path:"images/zhe_5.png"}, /////折扣文字特效图片5////////////////
+    {name:"zhe_6",path:"images/zhe_6.png"}, /////折扣文字特效图片6///////////////
+    {name:"zhe_7",path:"images/zhe_7.png"}, /////折扣文字特效图片7///////////////
+    {name:"zhe_8",path:"images/zhe_8.png"}, /////折扣文字特效图片8///////////////
+    {name:"zhe_9",path:"images/zhe_9.png"}, /////折扣文字特效图片9///////////////
+    {name:"qipai_endable",path:"images/qipai_endable.png"}, /////棋牌带锁图片///////////////////////////////////////////////////////
+    {name:"qipai_default",path:"images/qipai_default.png"}, /////棋牌点击默认背面图片//////////////////////////
+    {name:"navIco_08",path:"images/navIco_08.png"}, /////棋牌特殊背面图片//////////////////////////
+    {name:"qipai_num1",path:"images/qipai_num1.png"}, /////棋牌数字1//////////////////////////
+    {name:"qipai_num2",path:"images/qipai_num2.png"}, /////棋牌数字2//////////////////////////
+    {name:"qipai_num3",path:"images/qipai_num3.png"}, /////棋牌数字3//////////////////////////
+    {name:"qipai_num4",path:"images/qipai_num4.png"}, /////棋牌数字4//////////////////////////
+    {name:"qipai_num5",path:"images/qipai_num5.png"}, /////棋牌数字5//////////////////////////
+    {name:"qipai_num6",path:"images/qipai_num6.png"}, /////棋牌数字6//////////////////////////
+    {name:"qipai_num7",path:"images/qipai_num7.png"}, /////棋牌数字7//////////////////////////
+    {name:"qipai_num8",path:"images/qipai_num8.png"}, /////棋牌数字8//////////////////////////
+    {name:"qipai_num9",path:"images/qipai_num9.png"}, /////棋牌数字9//////////////////////////
+    {name:"qipai_num10",path:"images/qipai_num10.png"},/////棋牌数字10//////////
+    {name:"xipai_A",path:"images/xipai_A.png"}, /////翻牌按钮///////////////////////
+    {name:"xipai_B",path:"images/xipai_B.png"}, /////翻牌点击效果按钮///////////////////
+    {name:"select_tip",path:"images/select_tip.png"}, /////确定选择选择与取消选择////////
+    {name:"jianjian_btn_back_sd",path:"images/jianjian_btn_back_sd.png"},//////外发光图片A///////////////////////////////////////////////
+    {name:"qipai_num_sd",path:"images/qipai_num_sd.png"},//////外发光图片B////////////////////////
+    {name:"zhongJ_backyl",path:"images/zhongJ_backyl.png"},//////中奖背景图1黄色/////////////////////////////////////////////////////////
+    {name:"zhongJ_backzi",path:"images/zhongJ_backzi.png"},//////中奖背景图2紫色/////////////
+    {name:"zhongJ_H1",path:"images/zhongJ_H1.png"},//////中奖标题1参与有份//////////////
+    {name:"zhongJ_H2",path:"images/zhongJ_H2.png"},//////中奖标题2意外惊喜////////////////
+    {name:"zhongJ_H3",path:"images/zhongJ_H3.png"},//////中奖标题3谢谢参与////////////////
+    {name:"zhongJ_H4",path:"images/zhongJ_H4.png"},//////中奖标题4恭喜您中奖了//////////
+    {name:"zhongJ_H5",path:"images/zhongJ_H5.png"},//////中奖标题5喜从天降////////////
+    {name:"zhongJ_z95",path:"images/zhongJ_z95.png"},//////中奖折扣95///////////////////////
+    {name:"zhongJ_z5",path:"images/zhongJ_z5.png"},//////中奖折扣5///////////////////////
+    {name:"zhongJ_M",path:"images/zhongJ_M.png"},//////中奖麦当劳券///////////////////////
+    {name:"zhongJ_mddj",path:"images/zhongJ_mddj.png"},//////中奖免单大奖///////////////////////
+    {name:"zhongJ_kuang1",path:"images/zhongJ_kuang1.png"},//////中奖按钮框背景1///////////////////////
+    {name:"zhongJ_kuang2",path:"images/zhongJ_kuang2.png"},//////中奖按钮框背景1///////////////////////
+    {name:"zhongJ_star1",path:"images/zhongJ_star1.png"},//////中奖星星1///////////////////////
+    {name:"zhongJ_star2",path:"images/zhongJ_star2.png"},//////中奖星星2///////////////////////
+    {name:"zhongJ_star3",path:"images/zhongJ_star3.png"},//////中奖星星3///////////////////////
+    {name:"zhongJ_star4",path:"images/zhongJ_star4.png"},//////中奖星星4///////////////////////
+    {name:"zhongJ_star5",path:"images/zhongJ_star5.png"},//////中奖星星5///////////////////////
+    {name:"zhongJ_star6",path:"images/zhongJ_star6.png"},//////中奖星星6///////////////////////
+    {name:"zhongJ_star7",path:"images/zhongJ_star7.png"},//////中奖星星7///////////////////////
+    {name:"zhongJ_star8",path:"images/zhongJ_star8.png"},//////中奖星星8///////////////////////
+    {name:"zhongJ_star9",path:"images/zhongJ_star9.png"},//////中奖星星9///////////////////////
+    {name:"zhongJ_star10",path:"images/zhongJ_star10.png"},//////中奖星星10///////////////////////
+    {name:"zhongJ_star11",path:"images/zhongJ_star11.png"},//////中奖星星11///////////////////////
+    {name:"firelight",path:"images/firelight.png"},//////翻牌火光///////////////////////
+    {name:"audiobutton",path:"images/audiobutton.png"},//////声音按钮///////////////////////
+    {name:"setbutton",path:"images/setbutton.png"},//////设置按钮///////////////////////
+        /////////////////音效/////////////////////////////////////
+    {name:"back_sound",path:"soundEf/back_sound.mp3",type:"sound"},////背景音///////////////
+    {name:"sound01",path:"soundEf/mouseup.wav",type:"sound"},///动感按钮抬起1音////////////////
+    {name:"mouseClose",path:"soundEf/mouseClose.wav",type:"sound"},////普通按钮音///////////////
+    {name:"lipin0",path:"soundEf/lipin.wav",type:"sound"},/////撒礼品音//////////////
+    {name:"lipin1",path:"soundEf/lipin.wav",type:"sound"},/////撒礼品音//////////////
+    {name:"lipin2",path:"soundEf/lipin.wav",type:"sound"},/////撒礼品音//////////////
+    {name:"lipin3",path:"soundEf/lipin.wav",type:"sound"},/////撒礼品音//////////////
+    {name:"lipin4",path:"soundEf/lipin.wav",type:"sound"},/////撒礼品音//////////////
+    {name:"lipin5",path:"soundEf/lipin.wav",type:"sound"},/////撒礼品音//////////////
+    {name:"lipin6",path:"soundEf/lipin.wav",type:"sound"},/////撒礼品音//////////////
+    {name:"lipin7",path:"soundEf/lipin.wav",type:"sound"},/////撒礼品音//////////////
+    {name:"lipin8",path:"soundEf/lipin.wav",type:"sound"},/////撒礼品音//////////////
+    {name:"lipin9",path:"soundEf/lipin.wav",type:"sound"},/////撒礼品音//////////////
+    {name:"huoyan",path:"soundEf/huoyan.wav",type:"sound"},/////火焰音//////////////
+    {name:"fanzhuan",path:"soundEf/fanzhuan.mp3",type:"sound"},////翻转音///////////////
+    {name:"zhekougund",path:"soundEf/zhekougund.mp3",type:"sound"},////折扣切换///////////////
+    {name:"xintiao",path:"soundEf/xintiao.mp3",type:"sound"},////心跳///////////////
+    {name:"xipai",path:"soundEf/xipai.mp3",type:"sound"},////洗牌///////////////
+    {name:"huodongyin",path:"soundEf/huodongyin.mp3",type:"sound"},////洗牌///////////////
+    {name:"zhongjiang_zk",path:"soundEf/zhongjiang_zk.mp3",type:"sound"},////折扣奖///////////////
+    {name:"zhongjiang_md",path:"soundEf/zhongjiang_md.mp3",type:"sound"},////免单奖///////////////
+    {name:"zhongjiang_aw",path:"soundEf/zhongjiang_aw.mp3",type:"sound"},////安慰奖///////////////
+    {name:"zhongjiang_wu",path:"soundEf/zhongjiang_wu.mp3",type:"sound"},////没中奖///////////////
+    {name:"benselect",path:"soundEf/benselect.wav",type:"sound"},////棋牌先选中音///////////////
+        ///////////////新增界面素材////////////////////
+    {name:"Interface_01",path:"images/Interface_01.png"}, /////主界面背景图////////////////////////
+    {name:"Interface_02",path:"images/Interface_02.png"}, /////抽奖规则///////
+    {name:"Interface_03",path:"images/Interface_03.png"}, /////玩家设置///////
+    {name:"Interface_04",path:"images/Interface_04.png"}, /////试玩儿///////
+    {name:"Interface_05",path:"images/Interface_05.png"}, /////开始抽奖///////
+    {name:"Interface_06",path:"images/Interface_06.png"}, /////用户协议///////
+    {name:"Interface_07",path:"images/Interface_07.png"}, /////抽奖规则界面背景/////////////////
+    {name:"Interface_08",path:"images/Interface_08.png"}, /////规则试玩儿///////
+    {name:"Interface_09",path:"images/Interface_09.png"}, /////规则开始抽奖///////
+    {name:"Interface_14",path:"images/Interface_14.png"}, /////声音设置弹窗背景///////////////////////////////
+    {name:"Interface_10",path:"images/Interface_10.png"}, /////声音设置弹窗关闭///////
+    {name:"Interface_12",path:"images/Interface_12.png"}, /////音乐按钮///////
+    {name:"Interface_13",path:"images/Interface_13.png"}, /////音效按钮///////
+    {name:"Interface_11",path:"images/Interface_11.png"} /////禁用小标///////
+
+];
+var loadingLayer; ///进度条////
+var datalist=[]; ///////资源数组////////////
+//var scale_bl=0.592;
+var scale_bl=1;
+var select_zhe=9; /////当前选择的折扣//////
+
+var show_Result; ////显示结果函数////////
+
+///////////////////声音开关/////////////////////
+var yinyue_switch=true; ///音乐///
+var yinxiao_switch=true;///音效///
+var newgameContent; ////游戏元素容器//////
+var Main_Interfaceob; ////游戏主界面//////
+var showsezhiTnc=false; /////音乐设置弹窗//////
+var wanistrue=true; ///是否真玩///////
+
+
+/////////启动函数////////////
+function main(){
+    LGlobal.stageScale = LStageScaleMode.SHOW_ALL;
+    LGlobal.screen(LStage.FULL_SCREEN);
+    loadingLayer = new LoadingSample1();
+    addChild(loadingLayer); 
+    LLoadManage.load( 
+        loadData, 
+        function(progress){ 
+            loadingLayer.setProgress(progress); 
+         }, 
+        gameInit
+    );
+
+}
+
+
+
+//////////加载完成//////////
+function gameInit (result) {
+
+    datalist = result; 
+    removeChild(loadingLayer); 
+    loadingLayer = null;
+
+
+    //////音效加载/////////
+    window.sounda = new LSound(); //////普通按钮////////
+    sounda.load(datalist["mouseClose"]);
+    window.soundb = new LSound(); //////活动按钮////////
+    soundb.load(datalist["sound01"]);
+    window.soundc = new LSound(); //////棋子选择////////
+    soundc.load(datalist["benselect"]);
+    window.soundd = new LSound(); //////翻牌音////////
+    soundd.load(datalist["fanzhuan"]);
+    window.sounde = new LSound(); //////火光音////////
+    sounde.load(datalist["huoyan"]);
+    window.soundg = new LSound(); //////折扣切换////////
+    soundg.load(datalist["zhekougund"]);
+    window.soundh = new LSound(); /////重排按钮/////////
+    soundh.load(datalist["huodongyin"]);
+    window.xipaiyin="soundEf/xipai.mp3"; //////洗牌音效//////////
+
+
+    window.soundfARTY=[];
+    window.curintss=0;
+    for(var sd=0;sd<10;sd++){
+        var soundf = new LSound(); //////撒礼品////////
+        soundf.load(datalist["lipin"+sd]);
+        soundfARTY.push(soundf);
+    }
+
+
+
+
+
+    //////实例化背景/////////
+    var stage_background=new Ybackground(datalist["background"]);
+    addChild(stage_background);
+    ///////添加返回按钮////////
+    var returnarrow=new Yreturnarrow(datalist["returnarrow"],"https://www.baidu.com/");
+    addChild(returnarrow);
+
+
+    ////////////玩游戏界面容器//////////////////////////////////////////////////////
+    newgameContent=new LSprite();
+    addChild(newgameContent);
+    //shilihua_newgame();
+
+
+
+    ////////////声音按钮与设置按钮//////////
+    var Ybuttongroupasdsa=new Ybutton_sound();
+    addChild(Ybuttongroupasdsa);
+
+    var Ybutton_setaa=new Ybutton_set();
+    addChild(Ybutton_setaa);
+    Ybutton_setaa.addEventListener(LMouseEvent.MOUSE_UP,function(){
+        if(!showsezhiTnc){
+            var TansetvoiceiObj=new Tansetvoice();
+            addChild(TansetvoiceiObj);
+        }
+    })
+
+
+    ///////背景音乐///////
+        //alert(sound)
+        sound_back = new LSound();
+        sound_back.load(datalist["back_sound"]);
+        sound_back.setVolume(0.25);
+        sound_back.play(0,1000);
+
+    /////////实例化主界面///////////////
+    var SCsrcarry=["Interface_01","Interface_02","Interface_03","Interface_04","Interface_05","Interface_06"];
+    Main_Interfaceob=new Main_Interface(SCsrcarry);
+    addChild(Main_Interfaceob);
+
+
+}
+
+    function shilihua_newgame(wan){
+		wanistrue=wan;
+        if(wan){
+            ///真玩/////
+            //alert(1)
+        }else{
+            ///试玩/////
+            //alert(0)
+        }
+        ///////添加折扣选择器///////
+        newgameContent.removeAllChild();
+        var jianjian_btn_back=new Yjianjian_btn_control(function(num){
+            new Yzhekou_effect(jianjian_btn_back.parent,num);
+            select_zhe=num;
+        },9,false);
+        jianjian_btn_back.x=286;
+        jianjian_btn_back.y=110;
+        newgameContent.addChild(jianjian_btn_back);
+
+        /////////第一次修改折扣弹出说明////////
+
+        function cret_YExplain(){
+            jianjian_btn_back.Ystop(); ///停止点击///
+            var explain=new YExplain(jianjian_btn_back.parent,function(){
+                jianjian_btn_back.Yplay(); ///恢复点击///
+                Yqipai_contentasdas.isSelect=true; /////启用棋盘选择//////
+
+            });
+
+        }
+        ///////实例化棋盘///////
+        var zhutistring="E1,D2,F2,D3,E3,F3,C4,D4,F4,G4,C5,D5,E5,F5,G5,B6,C6,D6,F6,G6,H6,B7,C7,D7,E7,F7,G7,H7,I7,A8,B8,C8,D8,F8,G8,H8,I8,A9,B9,C9,D9,E9,F9,G9,H9,I9,A10,B10,C10,D10,E10,F10,G10,H10,I10,E11";
+        //E1="navIco_08"
+        var Yqipai_contentasdas=new Yqipai_content(zhutistring,qupanxuanzho);
+        Yqipai_contentasdas.isSelect=false;
+        function qupanxuanzho(namea,indexa){
+            ///////提示框/////
+            window.shengyins=new LSound();
+            shengyins.load("soundEf/xintiao.mp3");
+            shengyins.addEventListener(LEvent.COMPLETE,function(){
+                if(yinxiao_switch){
+					shengyins.play();
+				}
+
+            });
+            var Yselect_tipsds=new Yselect_tip(namea,function(){
+                Yqipai_contentasdas.isfanpai=true;
+                if(yinxiao_switch){
+					shengyins.stop();
+				}
+                jianjian_btn_back.Ystop();//////禁用折扣选择//////
+                Yqipai_contentasdas.showAllpai("1,2,3,5,1,6,7,9,8,1,2,1,10,10,2,3,6,6,9,8,4,1,2,5,9,9,5,1,3,6,6,7,7,5,5,2,1,6,5,1,2,3,8,7,5,6,1,5,7,6,1,2,3,5,5,1,7");
+            },function(){
+                if(yinxiao_switch){
+					shengyins.stop();
+				}
+                Yqipai_contentasdas.curren_objct.noscaleEfct(function(){
+                    Yqipai_contentasdas.isSelect=true;
+                });
+            });
+            newgameContent.addChild(Yselect_tipsds);
+        }
+        newgameContent.addChild(Yqipai_contentasdas);
+        cret_YExplain();
+
+
+        /////////翻牌按钮/////////
+        var Yxipai_butnsds=new Yxipai_butn(function(){
+            Yqipai_contentasdas.Shuffle_pai(); ///////洗牌////////
+
+        });
+        newgameContent.addChild(Yxipai_butnsds);
+
+        show_Result=function(){
+            var YzhongJ_Effectssad=new YzhongJ_Effects("zhongJ_z5","zhongJ_H4",5,"消费300元，未抽中5折|获得参与奖金：15元","在玩一次的链接","领取的链接","zhongJ_backyl","zhongjiang_zk");
+            // var YzhongJ_Effectssad=new YzhongJ_Effects("","zhongJ_H1",3,"消费300元，未抽中5折|获得参与奖金：15元","在玩一次的链接","领取的链接","zhongJ_backyl");
+            newgameContent.addChild(YzhongJ_Effectssad);
+        }
+    }
+
+
+</script>
+
+
+
+</body>
+</html>
